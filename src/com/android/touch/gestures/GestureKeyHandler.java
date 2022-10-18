@@ -46,9 +46,9 @@ import android.view.KeyEvent;
 
 import com.android.internal.os.DeviceKeyHandler;
 
-public class KeyHandler implements DeviceKeyHandler {
+public class GestureKeyHandler implements DeviceKeyHandler {
 
-    private static final String TAG = KeyHandler.class.getSimpleName();
+    private static final String TAG = GestureKeyHandler.class.getSimpleName();
 
     private static final String GESTURE_WAKEUP_REASON = "touchscreen-gesture-wakeup";
     private static final String PULSE_ACTION = "com.android.systemui.doze.pulse";
@@ -88,7 +88,7 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
-    public KeyHandler(final Context context) {
+    public GestureKeyHandler(final Context context) {
         mContext = context;
 
         mAudioManager = mContext.getSystemService(AudioManager.class);

@@ -14,18 +14,16 @@
     <protected-broadcast android:name="com.android.touch.gestures.UPDATE_SETTINGS" />
 
     <uses-sdk
-        android:targetSdkVersion="29"/>
+        android:targetSdkVersion="32"/>
 
     <application
         android:label="@string/touchscreen_gesture_settings_title"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SubSettingsBase"
+        android:directBootAware="true"
+        android:defaultToDeviceProtectedStorage="true"
         android:persistent="true"
-        android:supportsRtl="true">
-
-        <receiver android:name=".BootReceiver" android:enabled="true">
-            <intent-filter android:priority="999999">
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+        android:allowClearUserData="false">
 
         <activity
             android:name=".TouchscreenGestureSettings"
@@ -41,9 +39,17 @@
             android:name=".ScreenOffLaunchGestureActivity"
             android:permission="com.android.touch.gestures.TRIGGER_SCREEN_OFF_GESTURE"
             android:excludeFromRecents="true"
-            android:exported="true"
-            android:label="@string/touchscreen_gesture_settings_title"
-            android:theme="@style/AppTheme.Transparent">
+            android:label="@string/touchscreen_gesture_settings_title">
         </activity>
+
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".GestureKeyHandler"
+            android:exported="false" />
+
     </application>
 </manifest>
